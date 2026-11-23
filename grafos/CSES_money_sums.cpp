@@ -29,6 +29,7 @@ int main(){
     int n;
     cin >> n;
     int coins[n];
+
     forn(i, n){
         cin >> coins[i];
     }
@@ -36,7 +37,8 @@ int main(){
     int sumas = 0;
     memo[0] = true; //caso base
     for(int c : coins){  
-        dforn(j, MAXSUM ){  //para atras asi no repite elementos
+        dforr(j, 1, MAXSUM ){  //para atras asi no repite elementos
+            if(memo[j]) continue;
             if(j>=c){
                 memo[j] = memo[j-c];
             }
