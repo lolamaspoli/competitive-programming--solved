@@ -33,17 +33,18 @@ int main(){
     forn(i, n){
         cin >> coins[i];
     }
-    memset(memo, -1, sizeof(memo));
-    memo[0] = 1;
+
+    memo[0] = 1; //caso base
     for(int c : coins){ // for monedas afuera : cuento combinaciones
         forr(i,1, x+1){     //d adelante para atras: monedas infinitas
             //if (memo[i] != -1) continue;
             if(i>=c){
-                if(memo[i] == -1) memo[i] = 0;
-                memo[i] = memo[i] + memo[i-c];
+                memo[i] = (memo[i] + memo[i-c])%modulo;
             }
+            //cout << " i: " << i << " memo[i]:" << memo[i] << ln;
         }
+        
     }
-    cout << memo[x];
+    cout << memo[x] << ln;
 
 }
