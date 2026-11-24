@@ -40,7 +40,7 @@ int main(){
     for(int mask = 0; mask <= (1<<n) ; mask++){      //cada mask es una combinacion.     1<<n desplazo 1 n veces -> 2 a la n
         ll g1 = 0, g2= 0;
         forn(i, n){
-            if ((mask >> i) & 1){ //grupo 1: unos       //descrto bits hasta el iesimo y comparo
+            if ((mask && (1<<i)) ){ //grupo 1: unos       // hago el and de mask con algo que solo tiene bit prendido el iesimo
                 g1+=apples[i];
             } else {                //grupo 2: ceros
                 g2+= apples[i];
