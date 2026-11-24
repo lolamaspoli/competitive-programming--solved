@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define forr(i,a,b) for(int i = (int) a; i < (int) b; i++)
+#define forn(i,n) forr(i,0,n)
+#define dforr(i,a,b) for(int i = (int)b-1; i>=(int)a;--i)
+#define dforn(i,n) for(int i = (int)n-1; i>=0; i--)
+#define fore(e,c) for(const auto &e: (c))
+#define pb push_back
+#define ln '\n'
+#define sz(c) ((int)c.size())
+#define zero(v) memset(v,0,sizeof(v))
+#define all(v) v.begin(), v.end()
+typedef long long ll;
+typedef long double ld;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+typedef vector<int> vi;
+typedef vector<ll> vll;
+
+const ll INFLL = 1e18; // 9e18 puede desbordar si le sumás algo, 1e18 es más seguro xd
+const int INF = 1e9;
+const int MAXN = 5000;
+vector<pii> adj[MAXN];
+
+
+
+
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int n;
+    cin >> n;
+    int apples[n];
+
+    forn(i,n){
+        cin >> apples[i];
+    }
+    
+    ll minimo = INFLL;
+    for(int mask = 0; mask <= (1<<n) ; mask++){      //cada mask es una combinacion.     1<<n desplazo 1 n veces -> 2 a la n
+        ll g1 = 0, g2= 0;
+        forn(i, n){
+            if ((mask >> i) & 1){ //grupo 1: unos       //descrto bits hasta el iesimo y comparo
+                g1+=apples[i];
+            } else {                //grupo 2: ceros
+                g2+= apples[i];
+            }
+        }
+        minimo = min(minimo, abs(g1-g2));
+    }
+    cout << minimo << ln;
+    return 0;
+}
